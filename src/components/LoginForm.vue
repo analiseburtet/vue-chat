@@ -3,7 +3,7 @@
     <h5 class="text-center">Chat Login</h5>
     <hr>
     <b-form @submit.prevent="onSubmit">
-       <b-alert variant="danger" :show="hasError">{{ error }} </b-alert>
+      <b-alert variant="danger" :show="hasError">{{ error }} </b-alert>
 
       <b-form-group id="userInputGroup"
                     label="User Name"
@@ -31,7 +31,6 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'login-form',
   data() {
@@ -51,17 +50,15 @@ export default {
     ...mapGetters([
       'hasError'
     ])
-  },
-  methods: {
-    ...mapActions([
-      'login'
-    ]),
-    async onSubmit() {
-      const result = await this.login(this.userId);
-      if(result) {
-        this.$router.push('chat');
+    },
+    methods: {
+      ...mapActions(['login']),
+      async onSubmit() {
+        const result = await this.login(this.userId);
+        if(result) {
+          this.$router.push('chat');
+        }
       }
     }
-  }
 }
 </script>
